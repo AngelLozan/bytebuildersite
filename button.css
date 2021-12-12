@@ -1,0 +1,206 @@
+a.buy-with-crypto,
+a.donate-with-crypto,
+a.buy-with-crypto > span,
+a.donate-with-crypto > span,
+a.buy-with-crypto > div.spinner,
+a.donate-with-crypto > div.spinner,
+body > div.bwc-modal-container,
+body > div.bwc-modal-container > div.bwc-dimmer,
+body > div.bwc-modal-container > iframe.bwc-iframe {
+	/* reset */
+	background: none;
+	border: none;
+	border-radius: 0;
+	box-sizing: border-box;
+	clear: none;
+	clip: auto;
+	cursor: default;
+	display: block;
+	float: none;
+	height: auto;
+	margin: 0;
+	max-height: none;
+	min-height: none;
+	padding: 0;
+	opacity: 1;
+	text-shadow: none;
+	vertical-align: baseline;
+	visibility: visible;
+	width: auto;
+}
+
+body > div.bwc-modal-container,
+body > div.bwc-modal-container > div.bwc-dimmer,
+body > div.bwc-modal-container > iframe.bwc-iframe {
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+body > div.bwc-modal-container {
+	position: fixed;
+	z-index: 9000;
+}
+
+body > div.bwc-modal-container > div.bwc-dimmer {
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: -99;
+}
+
+body > div.bwc-modal-container > iframe.bwc-iframe {
+	position: fixed;
+	z-index: 9999;
+}
+
+a.buy-with-crypto {
+	min-width: 134px;
+}
+a.donate-with-crypto {
+	min-width: 160px;
+}
+
+a.buy-with-crypto,
+a.donate-with-crypto {
+	user-select: none;
+	user-drag: none;
+	-webkit-user-drag: none;
+	text-decoration: none;
+
+	background: #1652f0 linear-gradient(#1652f0, #0655ab);
+	cursor: pointer;
+	transition: background 0.2s ease-in-out, padding 0.2s;
+	border-radius: 6px;
+	display: inline-block;
+	height: 40px;
+	padding: 8px 15px 12px 15px;
+	padding: 9px 15px 11px 15px;
+	position: relative;
+}
+
+/* psuedo-element for shadow perf */
+a.buy-with-crypto::after,
+a.donate-with-crypto::after {
+	border-radius: 6px;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	opacity: 1;
+	top: 0;
+	left: 0;
+}
+
+a.buy-with-crypto > span,
+a.donate-with-crypto > span {
+	color: white;
+	font: normal 500 14px/20px -apple-system, BlinkMacSystemFont,
+		'Inter','Graphik', 'Segoe UI','Roboto', 'Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
+	letter-spacing: 0;
+	overflow: hidden;
+	text-align: center;
+	text-overflow: ellipsis;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+	white-space: nowrap;
+}
+
+/* alternative states */
+
+a.buy-with-crypto:hover,
+a.donate-with-crypto:hover {
+	background: #1652f0;
+}
+
+a.buy-with-crypto:active,
+a.donate-with-crypto:active {
+	background: #1652f0;
+	padding: 10px 15px 10px 15px !important;
+}
+
+a.buy-with-crypto.disabled,
+a.donate-with-crypto.disabled {
+	background: #7d95b6 !important;
+	cursor: default;
+	padding: 10px 15px 10px 15px !important;
+}
+
+a.buy-with-crypto.disabled > span,
+a.donate-with-crypto.disabled > span {
+	color: black !important;
+	opacity: 0.4 !important;
+}
+
+/* hide the shadows during interaction */
+a.buy-with-crypto:hover::after,
+a.donate-with-crypto:hover::after,
+a.buy-with-crypto:active::after,
+a.donate-with-crypto:active::after,
+a.buy-with-crypto.disabled::after,
+a.donate-with-crypto.disabled::after,
+a.buy-with-crypto.loading::after,
+a.donate-with-crypto.loading::after {
+	opacity: 0;
+}
+
+/* loading state */
+
+@keyframes buy-with-crypto-loading-spinner {
+	33% {
+		transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+	}
+	66% {
+		transform: rotate(270deg);
+		-ms-transform: rotate(270deg);
+	}
+	100% {
+		transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+	}
+}
+@-webkit-keyframes buy-with-crypto-loading-spinner {
+	33% {
+		-webkit-transform: rotate(90deg);
+	}
+	66% {
+		-webkit-transform: rotate(270deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+a.buy-with-crypto.loading,
+a.donate-with-crypto.loading {
+	background: #1652f0 !important;
+	cursor: default;
+}
+
+a.buy-with-crypto.loading > span,
+a.donate-with-crypto.loading > span {
+	color: transparent !important;
+	text-shadow: none;
+}
+
+a.buy-with-crypto.loading > div.spinner,
+a.donate-with-crypto.loading > div.spinner {
+	position: absolute;
+	top: 7px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	display: inline-block;
+
+	width: 25px;
+	height: 25px;
+	border: 2px solid rgba(6, 103, 208, 0.05);
+	border-radius: 100%;
+	border-top-color: white;
+	animation: buy-with-crypto-loading-spinner 1s infinite linear;
+	-webkit-animation: buy-with-crypto-loading-spinner 1s infinite linear;
+}
